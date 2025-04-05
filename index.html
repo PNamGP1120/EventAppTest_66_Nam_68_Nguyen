@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Sự Kiện</title>
+    <style>
+        /* CSS nội tuyến */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        form {
+            width: 400px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+        }
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        ul {
+            width: 400px;
+            margin: 20px auto;
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #ecf0f1;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Tiêu đề -->
+    <h1 id="title" name="title-name" class="title-class">Trang Quản Lý Sự Kiện</h1>
+    
+    <!-- Form thêm sự kiện -->
+    <form id="event-form" name="eventForm" class="form-class">
+        <label for="event-name" class="label-class">Tên sự kiện:</label>
+        <input type="text" id="event-name" name="eventName" class="input-class">
+        
+        <label for="event-date" class="label-class">Ngày:</label>
+        <input type="date" id="event-date" name="eventDate" class="input-class">
+        
+        <label for="event-time" class="label-class">Giờ:</label>
+        <input type="time" id="event-time" name="eventTime" class="input-class">
+        
+        <button id="submit-button" name="submitButton" class="button-class">Thêm sự kiện</button>
+    </form>
+    
+    <!-- Danh sách sự kiện -->
+    <ul id="event-list" class="list-class" name="eventList">
+        <li class="item-class" name="itemName">Liên kết mẫu: <a href="https://example.com" id="link-id" name="linkName">Truy cập</a></li>
+    </ul>
+    
+    <script>
+        // JavaScript xử lý sự kiện
+        document.getElementById("event-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            // Lấy giá trị từ form
+            const eventName = document.getElementById("event-name").value;
+            const eventDate = document.getElementById("event-date").value;
+            const eventTime = document.getElementById("event-time").value;
+            
+            // Kiểm tra nếu thiếu giá trị
+            if (!eventName || !eventDate || !eventTime) {
+                alert("Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+            
+            // Tạo một mục mới trong danh sách sự kiện
+            const listItem = document.createElement("li");
+            listItem.textContent = `${eventName} - ${eventDate} - ${eventTime}`;
+            listItem.className = "item-class";
+            listItem.setAttribute("name", "itemName");
+            
+            // Thêm vào danh sách
+            document.getElementById("event-list").appendChild(listItem);
+            
+            // Xóa dữ liệu trong form
+            document.getElementById("event-form").reset();
+        });
+    </script>
+</body>
+</html>
