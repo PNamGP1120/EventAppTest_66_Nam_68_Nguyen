@@ -80,18 +80,17 @@
             
             // Lấy giá trị từ form
             const eventName = document.getElementById("event-name").value;
-            const eventDate = document.getElementById("event-date").value;
-            const eventTime = document.getElementById("event-time").value;
+
             
             // Kiểm tra nếu thiếu giá trị
-            if (!eventName || !eventDate || !eventTime) {
+            if (!eventName) {
                 alert("Vui lòng điền đầy đủ thông tin!");
                 return;
             }
             
             // Tạo một mục mới trong danh sách sự kiện
             const listItem = document.createElement("li");
-            listItem.textContent = `${eventName} - ${eventDate} - ${eventTime}`;
+            listItem.textContent = `${eventName}`;
             listItem.className = "item-class";
             listItem.setAttribute("name", "itemName");
             
