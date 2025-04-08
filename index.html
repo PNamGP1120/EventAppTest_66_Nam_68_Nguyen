@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Sự Kiện</title>
     <style>
-        /* CSS nội tuyến */
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -55,51 +54,62 @@
     </style>
 </head>
 <body>
-    <!-- Tiêu đề -->
     <h1 id="title" name="title-name" class="title-class">Trang Quản Lý Sự Kiện</h1>
     
     <!-- Form thêm sự kiện -->
     <form id="event-form" name="eventForm" class="form-class">
         <label for="event-name" class="label-class">Tên sự kiện:</label>
         <input type="text" id="event-name" name="eventName" class="input-class">
-        
 
-        
+        <!-- Upload File -->
+        <label for="file-upload" class="label-class">Tải tệp đính kèm:</label>
+        <input type="file" id="file-upload" name="uploadFile" class="input-class">
+
         <button id="submit-button" name="submitButton" class="button-class">Thêm sự kiện</button>
     </form>
     
     <!-- Danh sách sự kiện -->
     <ul id="event-list" class="list-class" name="eventList">
-        <li class="item-class" name="itemName">Liên kết mẫu: <a href="https://example.com" id="link-id" name="linkName">Truy cập</a></li>
+        <li class="item-class" name="itemName">
+            Liên kết mẫu: 
+            <a href="https://example.com" id="link-id" name="linkName" target="_blank">Truy cập</a>
+        </li>
     </ul>
-    
+
+    <!-- Popup Button -->
+    <div style="width: 400px; margin: 0 auto;">
+        <button id="popup-button" onclick="openPopup()" class="button-class">🪟 Mở cửa sổ popup</button>
+    </div>
+
     <script>
-        // JavaScript xử lý sự kiện
+        // Thêm sự kiện
         document.getElementById("event-form").addEventListener("submit", function(e) {
             e.preventDefault();
-            
-            // Lấy giá trị từ form
+
             const eventName = document.getElementById("event-name").value;
 
-            
             // Kiểm tra nếu thiếu giá trị
             if (!eventName) {
-                alert("Vui lòng điền đầy đủ thông tin!");
+                alert("⚠️ Vui lòng điền đầy đủ thông tin tên sự kiện!");
                 return;
             }
-            
-            // Tạo một mục mới trong danh sách sự kiện
+
+            // Tạo một mục mới
             const listItem = document.createElement("li");
-            listItem.textContent = `${eventName}`;
+            listItem.textContent = eventName;
             listItem.className = "item-class";
             listItem.setAttribute("name", "itemName");
-            
-            // Thêm vào danh sách
+
             document.getElementById("event-list").appendChild(listItem);
-            
-            // Xóa dữ liệu trong form
+
+            // Reset form
             document.getElementById("event-form").reset();
         });
+
+        // Hàm mở popup window
+        function openPopup() {
+            window.open("https://www.w3schools.com", "_blank", "width=500,height=400");
+        }
     </script>
 </body>
 </html>
